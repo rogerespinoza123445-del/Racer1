@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#101820" />
+  <title>Warehouse Run - 2 Player Prototype</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <section id="home" class="screen active">
+      <div class="panel hero">
+        <div class="eyebrow">2 PLAYER MOBILE PROTOTYPE</div>
+        <h1>WAREHOUSE RUN</h1>
+        <p>Three laps. One shutter. Far too many pineapples.</p>
+        <div class="home-actions">
+          <button id="createRoom" class="primary">Create room</button>
+          <button id="joinRoom" class="secondary">Join room</button>
+          <button id="soloTest" class="ghost">Solo test</button>
+        </div>
+        <div id="joinBox" class="join-box hidden">
+          <input id="roomInput" maxlength="5" inputmode="text" autocomplete="off" placeholder="ROOM CODE" />
+          <button id="joinConfirm" class="primary">Join</button>
+        </div>
+        <p id="netStatus" class="status">Peer-to-peer multiplayer uses an internet connection.</p>
+      </div>
+    </section>
+
+    <section id="lobby" class="screen">
+      <div class="panel lobby-panel">
+        <div class="lobby-top">
+          <div>
+            <div class="eyebrow">ROOM</div>
+            <div id="roomCode" class="room-code">SOLO</div>
+          </div>
+          <div id="playerStatus" class="player-status">Waiting for player 2…</div>
+        </div>
+        <h2>Choose your racer</h2>
+        <div id="characterGrid" class="character-grid"></div>
+        <div class="lobby-actions">
+          <div id="selectionText">Choose a racer</div>
+          <button id="readyBtn" class="primary" disabled>Ready</button>
+        </div>
+        <div id="lockedMessage" class="locked-message hidden">Complete all challenges to unlock</div>
+      </div>
+    </section>
+
+    <section id="race" class="screen race-screen">
+      <canvas id="gameCanvas" width="1280" height="720"></canvas>
+      <div id="hud">
+        <div class="hud-left">
+          <div class="hud-chip"><span class="small">LAP</span><strong id="lapHud">1/3</strong></div>
+          <div class="hud-chip"><span class="small">POS</span><strong id="posHud">1st</strong></div>
+        </div>
+        <div class="hud-center">
+          <div id="countdown" class="countdown"></div>
+          <div id="banner" class="banner"></div>
+        </div>
+        <div class="hud-right">
+          <div class="item-chip pineapple"><span class="icon">🍍</span><strong id="pineappleHud">0</strong></div>
+          <div class="item-chip monster"><span class="icon">🥤</span><strong id="monsterHud">0</strong></div>
+        </div>
+      </div>
+      <div id="controls" class="controls">
+        <div class="steer-pad">
+          <button data-control="left" class="control-btn steer">◀</button>
+          <button data-control="right" class="control-btn steer">▶</button>
+        </div>
+        <div class="action-pad">
+          <button id="fireBtn" class="control-btn item pineapple-btn">🍍</button>
+          <button id="boostBtn" class="control-btn item boost-btn">BOOST</button>
+          <button data-control="brake" class="control-btn pedal brake">BRAKE</button>
+          <button data-control="gas" class="control-btn pedal gas">GO</button>
+        </div>
+      </div>
+      <div id="portraitWarning" class="portrait-warning">Rotate your phone sideways to race.</div>
+    </section>
+
+    <section id="results" class="screen">
+      <div class="panel results-panel">
+        <div class="eyebrow">RACE COMPLETE</div>
+        <h1 id="resultTitle">1ST</h1>
+        <p id="resultLine"></p>
+        <button id="rematchBtn" class="primary">Rematch</button>
+        <button id="backHomeBtn" class="ghost">Back to menu</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
